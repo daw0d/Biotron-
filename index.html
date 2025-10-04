@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Canvas: A Space Biology Knowledge Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'space-dark': '#0f172a',
+              'space-mid': '#1e293b',
+              'space-light': '#334155',
+              'accent-teal': '#2dd4bf',
+              'accent-orange': '#f97316',
+              'text-primary': '#f8fafc',
+              'text-secondary': '#94a3b8',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-in-out',
+              'slide-in': 'slideIn 0.5s ease-in-out',
+              'twinkle': 'twinkle 2s infinite ease-in-out alternate',
+              'slide-in-right': 'slideInRight 0.5s ease-in-out',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: 0 },
+                '100%': { opacity: 1 },
+              },
+              slideIn: {
+                '0%': { transform: 'translateY(20px)', opacity: 0 },
+                '100%': { transform: 'translateY(0)', opacity: 1 },
+              },
+              slideInRight: {
+                '0%': { transform: 'translateX(100%)', opacity: 0 },
+                '100%': { transform: 'translateX(0)', opacity: 1 },
+              },
+              twinkle: {
+                '0%': { opacity: 0.2, transform: 'scale(0.8)' },
+                '100%': { opacity: 1, transform: 'scale(1)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  <style>
+    /* Custom Scrollbar Styles */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #334155;
+      border-radius: 4px;
+      border: 2px solid #1e293b;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #475569;
+    }
+    /* Firefox scrollbar */
+    @supports (scrollbar-color: auto) {
+      * {
+        scrollbar-color: #334155 #1e293b;
+        scrollbar-width: thin;
+      }
+    }
+
+    /* For Galaxy View */
+    .galaxy-container {
+        perspective: 1000px;
+        transition: transform 0.3s ease;
+    }
+    .publication-star {
+        position: absolute;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+        transform-origin: center center;
+    }
+    .publication-star:hover {
+        transform: scale(1.4) !important;
+        box-shadow: 0 0 15px #f8fafc, 0 0 25px #f8fafc !important;
+        z-index: 10;
+    }
+    .publication-star.focused {
+        transform: scale(2.0) !important;
+        box-shadow: 0 0 20px #f97316, 0 0 40px #f97316 !important;
+        border: 2px solid #f97316;
+        z-index: 10;
+    }
+    .publication-star:hover .publication-label {
+        opacity: 1;
+        transform: translate(-50%, -150%);
+        visibility: visible;
+    }
+    .publication-label {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        background: rgba(15, 23, 42, 0.9);
+        color: #f8fafc;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        pointer-events: none;
+        width: 250px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: center;
+    }
+    /* Panel Resizer */
+    .resizer {
+        background: #334155;
+        z-index: 10;
+        transition: background 0.2s ease;
+    }
+    .resizer:hover {
+        background: #f97316;
+    }
+    .resizer[data-orientation="vertical"] {
+        width: 5px;
+        cursor: col-resize;
+    }
+    .resizer[data-orientation="horizontal"] {
+        height: 5px;
+        cursor: row-resize;
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.22.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-space-dark text-text-primary">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

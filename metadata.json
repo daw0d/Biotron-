@@ -1,0 +1,5 @@
+{
+  "name": "Cosmic Canvas: A Space Biology Knowledge Engine",
+  "description": "An innovative, AI-powered dashboard for the NASA Space Apps Challenge. Cosmic Canvas leverages the Gemini API to summarize, visualize, and enable deep exploration of NASA's space bioscience publications, helping scientists, managers, and mission architects uncover insights, identify research gaps, and accelerate human space exploration.",
+  "requestFramePermissions": []
+}
